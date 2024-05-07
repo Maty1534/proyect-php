@@ -33,6 +33,9 @@ const firebaseScripts = [
   "firebase-performance-compat.js",
 ];
 
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
 document.addEventListener("DOMContentLoaded", function () {
   const loadEl = document.querySelector("#load");
   // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥

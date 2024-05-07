@@ -18,6 +18,9 @@ module.exports = {
         exclude: /node_modules/, // Excluir la carpeta node_modules
         use: {
           loader: "babel-loader", // Usar Babel para transpilar el código
+          options: {
+            presets: ['@babel/preset-env']
+          }
         },
       },
       {
