@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+// import { initializeApp } from "firebase/app";
+// import { getAnalytics } from "firebase/analytics";
 
 // Actualiza la versión según sea necesario
 const firebaseVersion = "13.8.0";
@@ -34,7 +34,7 @@ const firebaseScripts = [
 ];
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+// const app = initializeApp(firebaseConfig);
 
 document.addEventListener("DOMContentLoaded", function () {
   const loadEl = document.querySelector("#load");
