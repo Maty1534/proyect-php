@@ -4,8 +4,18 @@
   "description": "Practica de php de Potrero Digital hosteado en firebase.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "start": "webpack serve --open"
   },
   "author": "Maty1534",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Maty1534/proyect-php.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Maty1534/proyect-php/issues"
+  },
+  "homepage": "https://github.com/Maty1534/proyect-php#readme"
 }
