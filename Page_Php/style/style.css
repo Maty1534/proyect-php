@@ -9,7 +9,9 @@
   font-style: normal;
 }
 
-.Script_php {
+.Script_php, .Script_php h1, 
+.Script_php h2, .Script_php h3,
+.Script_php p{
   color: violet;
 }
 
