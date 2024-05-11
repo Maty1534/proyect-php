@@ -9,6 +9,7 @@
   font-style: normal;
 }
 
-#contenidoPHP, #contenidoPHP h1, #contenidoPHP h3, #contenidoPHP p{
-  color: red;
+.Script_php {
+  color: violet;
 }
+
