@@ -12,6 +12,18 @@
 .Script_php, .Script_php h1, 
 .Script_php h2, .Script_php h3,
 .Script_php p{
-  color: violet;
+  color: white;
 }
 
+#archivo_php_0, #archivo_php_0 h1, #archivo_php_0 h2,
+#archivo_php_0 h3, #archivo_php_0 p {
+  color: yellow;
+}
+#archivo_php_1, #archivo_php_1 h1, #archivo_php_1 h2,
+#archivo_php_1 h3, #archivo_php_1 p {
+  color: violet;
+}
+#archivo_php_2, #archivo_php_2 h1, #archivo_php_2 h2,
+#archivo_php_2 h3, #archivo_php_2 p {
+color: red;
+}
