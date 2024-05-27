@@ -9,6 +9,7 @@ firebase-debug.*.log*
 
 # Dist que es de la construccion.
 Src/dist
+dist/
 
 # Firebase cache
 .firebase/

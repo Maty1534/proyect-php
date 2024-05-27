@@ -8,8 +8,8 @@ module.exports = {
     scripts: "./Src/Js/scripts.js",
   }, // Ruta del archivo principal de entrada en la carpeta src
   output: {
-    filename: "[name].bundle.js",
-    path: path.resolve(__dirname, "Src/dist"), // Carpeta de salida
+    filename: "[path]/[name].bundle.js",
+    path: path.resolve(__dirname, "dist/js"), // Carpeta de salida
   },
   module: {
     rules: [
@@ -19,20 +19,25 @@ module.exports = {
         use: {
           loader: "babel-loader", // Usar Babel para transpilar el código
           options: {
-            presets: ['@babel/preset-env']
-          }
+            presets: ["@babel/preset-env"],
+          },
         },
       },
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, "style-loader", "css-loader"],
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
         include: path.resolve(__dirname, "Src"),
       },
     ],
   },
+  devServer: {
+    static: path.join(__dirname, "Src"),
+    compress: true,
+    port: 9000,
+  },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "./Src/Styles/styles.css",
+      filename: "[path]/[name].css", // Carpeta para archivos CSS compilados
     }),
   ],
   optimization: {

@@ -1,25 +1,26 @@
-// Import the functions you need from the SDKs you need
-// import { initializeApp } from "firebase/app";
-// import { getAnalytics } from "firebase/analytics";
+// Importa las funciones que necesitas de los SDK que necesitas
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+import { getPerformance } from "firebase/performance"; // Importa el SDK de Performance
 
-// Actualiza la versión según sea necesario
-const firebaseVersion = "13.8.0";
+// Configuración de tu aplicación Firebase
+const firebaseConfig = {
+  apiKey: "AIzaSyBqvD_lzBYnrr1Ge5qWd-cWUYM03nYbVh4",
+  authDomain: "proyect-php-1534.firebaseapp.com",
+  databaseURL: "https://proyect-php-1534-default-rtdb.firebaseio.com",
+  projectId: "proyect-php-1534",
+  storageBucket: "proyect-php-1534.appspot.com",
+  messagingSenderId: "637090428583",
+  appId: "1:637090428583:web:6466d87dd1c601525ecd82",
+  measurementId: "G-DMM2LLTEBD",
+};
+
+// Inicializa Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const perf = getPerformance(app);
 
 // Carga dinámica de scripts de Firebase
-firebaseScripts.forEach((script) => {
-  const scriptTag = document.createElement("script");
-  scriptTag.defer = true;
-  scriptTag.src = `/__/firebase/${firebaseVersion}/${script}`;
-  document.head.appendChild(scriptTag);
-});
-
-// Inicialización de Firebase
-const initScript = document.createElement("script");
-initScript.defer = true;
-initScript.src = `/__/firebase/init.js?useEmulator=true`;
-document.head.appendChild(initScript);
-
-// Scripts de Firebase
 const firebaseScripts = [
   "firebase-app-compat.js",
   "firebase-auth-compat.js",
@@ -33,25 +34,21 @@ const firebaseScripts = [
   "firebase-performance-compat.js",
 ];
 
-// Initialize Firebase
-// const app = initializeApp(firebaseConfig);
+firebaseScripts.forEach((script) => {
+  const scriptTag = document.createElement("script");
+  scriptTag.defer = true;
+  scriptTag.src = `/__/firebase/${firebaseVersion}/${script}`;
+  document.head.appendChild(scriptTag);
+});
+
+// Inicialización de Firebase
+const initScript = document.createElement("script");
+initScript.defer = true;
+initScript.src = `/__/firebase/init.js?useEmulator=true`;
+document.head.appendChild(initScript);
 
 document.addEventListener("DOMContentLoaded", function () {
   const loadEl = document.querySelector("#load");
-  // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-  // // The Firebase SDK is initialized and available here!
-  //
-  // firebase.auth().onAuthStateChanged(user => { });
-  // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-  // firebase.firestore().doc('/foo/bar').get().then(() => { });
-  // firebase.functions().httpsCallable('yourFunction')().then(() => { });
-  // firebase.messaging().requestPermission().then(() => { });
-  // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-  // firebase.analytics(); // call to activate
-  // firebase.analytics().logEvent('tutorial_completed');
-  firebase.performance(); // call to activate
-  //
-  // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
 
   try {
     let app = firebase.app();
