@@ -2,7 +2,7 @@
 echo "<h1>Segundo trabajo de ejercicios</h1>";
 // Realizar la transformación de grados Celsius a 
 // Fahrenheit para el Valor 20°C y luego lo imprima por pantalla.
-echo '<h1>Primera Act.</h1>';
+echo '<h2>Primera Act.</h2>';
 $num_a = rand(-10, 40);
 
 echo '<p>El numero utilizado es: ' . $num_a . " (el rango del numero es de -10 a 40)</p>";
@@ -18,7 +18,7 @@ echo "<br> Celsius: " . $celsius . " °C";
 // altura 12cm.
 // - Calcular e imprimir el perímetro y el área de un círculo dado que su radio es de
 // 30cm.
-echo '<h1>Segunda Act.</h1>';
+echo '<h2>Segunda Act.</h2>';
 $base = 18;
 $altura = 12;
 $perímetro = 2 * ($base + $altura);
