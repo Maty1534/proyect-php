@@ -1,29 +1,147 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
+/* Reset y configuración básica */
 * {
-  background-color: black;
-  color: aqua;
-  flex: auto;
   font-family: "Noto Sans", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
+  box-sizing: border-box;
 }
 
-.Script_php, .Script_php h1, 
-.Script_php h2, .Script_php h3,
-.Script_php p{
-  color: white;
+:root {
+  --color-primary: #e2f2f2;
+  --color-navbar: #4ca6a6;
+  --color-text-primary: #2c3e50;
+  --color-text-secondary: #7f8c8d;
+  --color-button-links: #16a085;
+  --color-background-secondary: #bdc3c7;
+  --color-background-tertiary: #00ffff;
+  --color-background-quaternary: #000000;
+  --color-important: #e74c3c;
+  --color-card-bg: #2a2b38;
+  --color-input-bg: #1f2029;
+  --color-input-text: #d3d3d3;
+  --color-input-icon: #ffeba7;
+  --color-btn-bg: #ffeba7;
+  --color-btn-text: #5e6681;
+  --color-btn-hover-bg: #5e6681;
+  --color-btn-hover-text: #ffeba7;
+  --color-link-text: #f5f5f5;
+  --color-link-hover: #ffeba7;
+  --color-shadow: rgba(255, 235, 167, 0.2);
+  --color-shadow-hover: rgba(16, 39, 112, 0.2);
 }
 
-#archivo_php_0, #archivo_php_0 h1, #archivo_php_0 h2,
-#archivo_php_0 h3, #archivo_php_0 p {
-  color: yellow;
+/* Estilo para diferentes cuerpos de PHP */
+body.php_body {
+  background-color: var(--color-primary);
+  color: var(--color-text-primary);
 }
-#archivo_php_1, #archivo_php_1 h1, #archivo_php_1 h2,
-#archivo_php_1 h3, #archivo_php_1 p {
-  color: violet;
+
+.Script_php, .Script_php h1, .Script_php h2, .Script_php h3, .Script_php p {
+  color: var(--color-text-secondary);
 }
-#archivo_php_2, #archivo_php_2 h1, #archivo_php_2 h2,
-#archivo_php_2 h3, #archivo_php_2 p {
-color: red;
+
+#archivo_php_0, #archivo_php_0 h1, #archivo_php_0 h2, #archivo_php_0 h3, #archivo_php_0 p {
+  color: var(--color-background-secondary);
+}
+
+#archivo_php_1, #archivo_php_1 h1, #archivo_php_1 h2, #archivo_php_1 h3, #archivo_php_1 p {
+  color: var(--color-button-links);
+}
+
+#archivo_php_2, #archivo_php_2 h1, #archivo_php_2 h2, #archivo_php_2 h3, #archivo_php_2 p {
+  color: var(--color-important);
+}
+
+/* Tarjeta Login */
+.login_card {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center;     /* Centra verticalmente */
+  height: 100vh;           /* Ocupa toda la altura de la pantalla */
+  margin: 0;               /* Elimina márgenes por defecto */
+}
+
+.login_card .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 260px;
+  text-align: center;
+  background-color: var(--color-card-bg);
+  padding: 20px;
+  border-radius: 8px; /* Redondea los bordes de la tarjeta */
+}
+
+.campo {
+  display: flex;
+  align-items: center;
+  background-color: var(--color-input-bg);
+  border-radius: 4px;
+  padding: 12px;
+  margin: 8px 0; /* Añade un poco de margen vertical */
+  width: 100%; /* Ajusta el ancho del campo */
+}
+
+.input-Icon {
+  height: 16px;
+  width: 16px;
+  fill: var(--color-input-icon);
+  margin-right: 8px; /* Espacio entre el icono y el input */
+}
+
+.input-campo {
+  background: none;
+  border: none;
+  outline: none;
+  width: 100%;
+  color: var(--color-input-text);
+}
+
+/* Texto del Log in */
+.tituloL {
+  margin-bottom: 16px;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-link-text);
+}
+
+/* Botones */
+.btn {
+  margin: 16px;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 14px;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  background-color: var(--color-btn-bg);
+  color: var(--color-btn-text);
+  box-shadow: 0 8px 24px 0 var(--color-shadow);
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-link {
+  color: var(--color-link-text);
+  display: block;
+  font-size: 12px;
+  transition: color 0.3s ease-out;
+}
+
+.btn:hover {
+  background-color: var(--color-btn-hover-bg);
+  color: var(--color-btn-hover-text);
+  box-shadow: 0 8px 24px 0 var(--color-shadow-hover);
+}
+
+.btn-link:hover {
+  color: var(--color-link-hover);
+}
+
+/* Enfoque en el botón por encima */
+.field input:focus::placeholder {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
 }
