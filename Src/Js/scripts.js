@@ -1,5 +1,3 @@
-import "../Styles/styles.css";
-
 const togglePasswordBtn = document.getElementById("togglePassword");
 const passwordInput = document.getElementById("password");
 const eyeIcon = document.getElementById("eye-icon");

@@ -11,6 +11,7 @@ firebase-debug.*.log*
 Src/dist
 dist/
 build
+.vscode
 
 # Firebase cache
 .firebase/
@@ -51,7 +52,6 @@ build/Release
 
 # Dependency directories
 node_modules/
-package-lock.json
 package-lock.json
 
 # Optional npm cache directory

@@ -2,6 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getPerformance } from "firebase/performance"; // Importa el SDK de Performance
+import "../Styles/styles.css";
 
 // Configuración de tu aplicación Firebase
 const firebaseConfig = {
