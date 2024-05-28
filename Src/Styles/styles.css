@@ -108,3 +108,9 @@
 .eye-closed path {
   fill: #888;
 }
+
+/* Comienza css Index para la pagina principal */
+.indexDiv {
+  background-color: #1f2029;
+  color: var(--color_secondary);
+}

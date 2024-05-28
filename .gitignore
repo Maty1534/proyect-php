@@ -10,6 +10,7 @@ firebase-debug.*.log*
 # Dist que es de la construccion.
 Src/dist
 dist/
+build
 
 # Firebase cache
 .firebase/
@@ -50,6 +51,7 @@ build/Release
 
 # Dependency directories
 node_modules/
+package-lock.json
 package-lock.json
 
 # Optional npm cache directory

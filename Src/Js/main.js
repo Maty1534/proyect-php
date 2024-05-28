@@ -20,33 +20,6 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const perf = getPerformance(app);
 
-// Carga dinámica de scripts de Firebase
-const firebaseScripts = [
-  "firebase-app-compat.js",
-  "firebase-auth-compat.js",
-  "firebase-database-compat.js",
-  "firebase-firestore-compat.js",
-  "firebase-functions-compat.js",
-  "firebase-messaging-compat.js",
-  "firebase-storage-compat.js",
-  "firebase-analytics-compat.js",
-  "firebase-remote-config-compat.js",
-  "firebase-performance-compat.js",
-];
-
-firebaseScripts.forEach((script) => {
-  const scriptTag = document.createElement("script");
-  scriptTag.defer = true;
-  scriptTag.src = `/__/firebase/${firebaseVersion}/${script}`;
-  document.head.appendChild(scriptTag);
-});
-
-// Inicialización de Firebase
-const initScript = document.createElement("script");
-initScript.defer = true;
-initScript.src = `/__/firebase/init.js?useEmulator=true`;
-document.head.appendChild(initScript);
-
 document.addEventListener("DOMContentLoaded", function () {
   const loadEl = document.querySelector("#load");
 
