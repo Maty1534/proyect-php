@@ -1,6 +1,5 @@
 {
   "hosting": {
-    "site": "proyect-php-1534",
     "public": "Src",
     "ignore": [
       "firebase.json",
