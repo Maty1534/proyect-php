@@ -1,22 +1,24 @@
 const path = require("path");
+const { Script } = require("vm");
 
 module.exports = {
-  mode: "development", // Cambiar a "development" si es necesario durante el desarrollo
+  // Desarrollar en 'development' hasta que logre obtener un 'production' que es en producción.
+  mode: "development",
   entry: {
     main: "./Src/Js/main.js",
     scripts: "./Src/Js/scripts.js",
-  }, // Ruta del archivo principal de entrada en la carpeta src
+  },
   output: {
     filename: "[name].bundle.js",
-    path: path.resolve(__dirname, "build/js"), // Carpeta de salida
+    path: path.resolve(__dirname, "Src/build/js"),
   },
   module: {
     rules: [
       {
-        test: /\.js$/, // Aplicar la regla a los archivos JS
-        exclude: /node_modules/, // Excluir la carpeta node_modules
+        test: /\.js$/, // Se aplica a los archivos JS
+        exclude: /node_modules/,
         use: {
-          loader: "babel-loader", // Usar Babel para transpilar el código
+          loader: "babel-loader",
           options: {
             presets: ["@babel/preset-env"],
           },

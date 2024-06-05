@@ -6,12 +6,7 @@ yarn-debug.log*
 yarn-error.log*
 firebase-debug.log*
 firebase-debug.*.log*
-
-# Dist que es de la construccion.
-Src/dist
-dist/
-build
-.vscode
+.vscode/
 
 # Firebase cache
 .firebase/
@@ -71,5 +66,3 @@ package-lock.json
 
 # dotenv environment variables file
 .env
-
-.vercel
