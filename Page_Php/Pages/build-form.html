@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es" class="display">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>formulario</title>
+    <link
+      rel="icon"
+      href="../../Img/photo-min-min.png"
+      type="image/png"
+      class="img_logo" />
+    <link rel="stylesheet" href="../style/style.css" />
+  </head>
+  <body class="form-body">
+    <div class="form_card">
+      <div class="card">
+        <h2 class="tituloL">Publicar objeto de venta</h2>
+        <form id="create-sale-object-form">
+          <div class="campo">
+            <label for="name" class="input-title">Nom:</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              class="input-campo"
+              placeholder="Nombre del producto"
+              required />
+          </div>
+          <div class="campo">
+            <label for="description" class="input-title">Desc:</label>
+            <textarea
+              id="description"
+              name="description"
+              class="input-campo"
+              placeholder="Descripción del producto"
+              required></textarea>
+          </div>
+          <div class="campo">
+            <label for="price" class="input-title">Prec:</label>
+            <input
+              type="number"
+              id="price"
+              name="price"
+              step="0.01"
+              class="input-campo"
+              placeholder="Precio del producto"
+              required />
+          </div>
+          <div class="campo">
+            <label for="category" class="input-title">Catg:</label>
+            <select id="category" name="category" class="input-campo" required>
+              <option value="">
+                Selecciona una categoría para el producto
+              </option>
+              <option value="electronics">Electrónica</option>
+              <option value="clothing">Ropa</option>
+              <option value="home">Hogar</option>
+              <option value="toys">Juguetes</option>
+            </select>
+          </div>
+          <div class="campo">
+            <label for="image" class="input-title">Img:</label>
+            <input
+              type="file"
+              id="image"
+              name="image"
+              accept="image/*"
+              class="input-campo"
+              required />
+          </div>
+          <button type="submit" class="btn">Guardar Objeto de Venta</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

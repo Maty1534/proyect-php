@@ -6,6 +6,8 @@
   font-optical-sizing: auto;
   font-style: normal;
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 :root {
@@ -55,11 +57,19 @@ body.php_body {
 }
 
 /* Tarjeta Login */
+html.display {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .login_card {
   display: flex;
   justify-content: center; /* Centra horizontalmente */
   align-items: center;     /* Centra verticalmente */
-  height: 100vh;           /* Ocupa toda la altura de la pantalla */
+  height: 100%;           /* Ocupa toda la altura de la pantalla */
   margin: 0;               /* Elimina márgenes por defecto */
 }
 
@@ -79,7 +89,7 @@ body.php_body {
   display: flex;
   align-items: center;
   background-color: var(--color-input-bg);
-  border-radius: 4px;
+  border-radius: 8px;
   padding: 12px;
   margin: 8px 0; /* Añade un poco de margen vertical */
   width: 100%; /* Ajusta el ancho del campo */
@@ -144,4 +154,31 @@ body.php_body {
 .field input:focus::placeholder {
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
+}
+
+/* Formulario */
+.form_card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.form_card .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: var(--color-card-bg);
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.input-title {
+  text-align: right;
+  height: auto;
+  width: 70px;
+  color: var(--color-input-icon);
+  margin-right: 20px;
 }
