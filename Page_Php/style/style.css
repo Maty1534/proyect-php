@@ -127,10 +127,18 @@ html.display {
   font-size: 14px;
   text-transform: uppercase;
   padding: 10px 20px;
-  background-color: var(--color-btn-bg);
-  color: var(--color-btn-text);
   box-shadow: 0 8px 24px 0 var(--color-shadow);
   transition: all 0.3s ease-in-out;
+}
+
+#btn-cancel {
+background-color: var(--color-important);
+color: var(--color-btn-text);
+}
+
+#btn-summit {
+  background-color: var(--color-btn-bg);
+  color: var(--color-btn-text);
 }
 
 .btn-link {
@@ -140,7 +148,7 @@ html.display {
   transition: color 0.3s ease-out;
 }
 
-.btn:hover {
+#btn-summit:hover, #btn-cancel:hover {
   background-color: var(--color-btn-hover-bg);
   color: var(--color-btn-hover-text);
   box-shadow: 0 8px 24px 0 var(--color-shadow-hover);

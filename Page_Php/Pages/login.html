@@ -10,12 +10,13 @@
       type="image/png"
       class="img_logo" />
     <link rel="stylesheet" href="../style/style.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
   <body>
     <div class="login_card">
       <div class="card">
         <h2 class="tituloL">Iniciar Sesión</h2>
-        <form>
+        <form method="post" action="../php/Act6.php" id="loginform">
           <div class="campo">
             <svg
               class="input-Icon"
@@ -28,7 +29,8 @@
               id="logemail"
               placeholder="Email"
               class="input-campo"
-              type="email" />
+              type="email"
+              name="email" />
           </div>
           <div class="campo">
             <svg
@@ -42,12 +44,16 @@
               id="logpass"
               placeholder="Contraseña"
               class="input-campo"
-              type="password" />
+              type="password"
+              name="password" />
           </div>
           <button class="btn" type="submit">Login</button>
           <a href="#" class="btn-link">Forgot your password?</a>
         </form>
+        <br />
+        <br />
       </div>
     </div>
+    <script src="../EcoScript/script.js"></script>
   </body>
 </html>

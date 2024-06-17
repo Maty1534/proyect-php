@@ -15,7 +15,7 @@
     <div class="form_card">
       <div class="card">
         <h2 class="tituloL">Publicar objeto de venta</h2>
-        <form id="create-sale-object-form">
+        <form>
           <div class="campo">
             <label for="name" class="input-title">Nom:</label>
             <input
@@ -68,7 +68,14 @@
               class="input-campo"
               required />
           </div>
-          <button type="submit" class="btn">Guardar Objeto de Venta</button>
+          <button type="submit" class="btn" id="btn-summit">Guardar</button>
+          <button
+            type="button"
+            class="btn"
+            id="btn-cancel"
+            onclick="window.location.href='../index.html'">
+            Cancelar
+          </button>
         </form>
       </div>
     </div>

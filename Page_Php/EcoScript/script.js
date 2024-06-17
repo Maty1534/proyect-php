@@ -27,6 +27,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Inicia la carga del primer archivo PHP. Modificar para ver un solo archivo.
-    cargarArchivo(0);
+    cargarArchivo(5);
   }
 });
