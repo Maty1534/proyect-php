@@ -34,35 +34,9 @@ function factorial($num)
 
 echo '<p>Total: ' . factorial(8) . '</p>';
 
-/* 2. Se pide ingresar por un formulario el nombre de un alumno y su nota numérica.
-Mostrar la calificación resultante según la nota ingresada con el nombre del alumno:
-0-2: Muy deficiente
-3-5: Insuficiente
-6-7: Bien
-8-9: Notable
-10: Sobresaliente */
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  // Obtener los datos del formulario
-  $nombre = $_POST['nombre'];
-  $nota = $_POST['nota'];
 
-  // Aquí puedes realizar el procesamiento de los datos, como almacenarlos en una base de datos o hacer cálculos, etc.
 
-  // Ejemplo de respuesta (puedes personalizarla según tus necesidades)
-  $response = [
-    'status' => 'success',
-    'message' => "Datos recibidos: Nombre: $nombre, Nota: $nota",
-    'data' => [
-      'nombre' => $nombre,
-      'nota' => $nota
-    ]
-  ];
-
-  // Devolver la respuesta en formato JSON
-  header('Content-Type: application/json');
-  echo json_encode($response);
-}
 /* 3. Al ejercicio anterior, agregarle validaciones con php, para indicar que los datos
 fueron ingresados incorrectamente:
 - Cuando el alumno no fue ingresado.

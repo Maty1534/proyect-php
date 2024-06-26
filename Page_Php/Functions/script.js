@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
       .then((html) => {
         document.getElementById("formulario").innerHTML = html;
         estado.innerText = ""; // Limpiar estado después de la carga exitosa
-        initializeLoginForm(); // Re-initialize login form after loading new content
+        initializeAllForm();
       })
       .catch((error) => {
         document.getElementById("formulario").innerHTML = "";
@@ -38,25 +38,24 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   }
 
-  // Inicializar formulario de login
-  function initializeLoginForm() {
+  // Inicializar formulario de login y de la act6
+  function initializeAllForm() {
     let loginForm = document.getElementById("loginform");
     let estado1 = document.getElementById("estado1");
+    let formularioAlumno = document.getElementById("formularioAlumno");
 
     if (loginForm) {
       loginForm.addEventListener("submit", function (event) {
         event.preventDefault(); // Evita que el formulario se envíe automáticamente
 
-        let formData = new FormData(loginForm);
+        // datos del loginform
+        let formDataLogin = new FormData(loginForm);
         let email = document.getElementById("logemail").value;
         let password = document.getElementById("logpass").value;
 
-        console.log("Email:", email);
-        console.log("Password:", password);
-
         fetch("Functions/login.php", {
           method: "POST",
-          body: formData,
+          body: formDataLogin,
         })
           .then((response) => response.json())
           .then((data) => {
@@ -74,38 +73,91 @@ document.addEventListener("DOMContentLoaded", function () {
           .catch((error) => {
             console.error("Error:", error);
           });
+
+        console.log("Email:", email);
+        console.log("Password:", password);
       });
     }
 
-    // Mostrar usuario y contraseña si están almacenados en localStorage
-    let storedEmail = localStorage.getItem("email");
-    let storedPassword = localStorage.getItem("password");
+    if (formularioAlumno) {
+      formularioAlumno.addEventListener("submit", function (event) {
+        event.preventDefault();
 
-    if (storedEmail && storedPassword) {
-      let userInfo = document.getElementById("userInfo");
-      if (userInfo) {
-        userInfo.innerHTML = `Email: ${storedEmail}<br>Contraseña: ${storedPassword}`;
-      }
-      if (estado1) {
-        estado1.innerHTML = "Login exitoso";
-      }
+        // datos del formulario de notas de alumnos
+        let formDataAlum = new FormData(formularioAlumno);
+        let nota = document.getElementById("nota").value;
+        let nombre = document.getElementById("nombre").value;
+
+        fetch("../Functions/notas.php", {
+          method: "POST",
+          body: formDataAlum,
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            if (data.status === "success") {
+              // Obtener el array de alumnos almacenado en localStorage
+              let alumnos = JSON.parse(localStorage.getItem("alumnos")) || [];
+              // Crear un nuevo objeto alumno con id, nombre y nota
+              let listaAlumnos = {
+                id: alumnos.length + 1,
+                nombre: nombre,
+                nota: nota,
+                calificacion: data.calificacion,
+              };
+
+              // Añadir el nuevo alumno al array
+              alumnos.push(listaAlumnos);
+              // Almacenar el array actualizado en localStorage
+              localStorage.setItem("alumnos", JSON.stringify(alumnos));
+
+              window.location.reload();
+            } else {
+              estado1.innerHTML = "Error: " + data.message;
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+
+        console.log("Nombre:", nombre);
+        console.log("Nota:", nota);
+      });
     }
   }
 
   function displayUserInfo() {
-    initializeLoginForm();
-    // Datos del login Form
+    // Mostrar datos de los dos formularios (notas y login)
     let storedEmail = localStorage.getItem("email");
     let storedPassword = localStorage.getItem("password");
 
+    let alumnos = JSON.parse(localStorage.getItem("alumnos")) || [];
+
+    let estado1 = document.getElementById("estado1");
+    let userInfo = document.getElementById("userInfo");
+    let alumInfo = document.getElementById("alumInfo");
+    let textExito = "Cargado Exitoso <br /> <br />";
+
     if (storedEmail && storedPassword) {
-      let userInfo = document.getElementById("userInfo");
-      let estado1 = document.getElementById("estado1");
       if (userInfo) {
         userInfo.innerHTML = `Email: ${storedEmail}<br>Contraseña: ${storedPassword}`;
+        estado1.innerHTML = textExito;
       }
-      if (estado1) {
-        estado1.innerHTML = "Login exitoso";
+    }
+
+    if (alumnos && alumnos.length > 0) {
+      if (alumInfo) {
+        if (!storedEmail) {
+          userInfo.innerHTML = `<br /> <br />`;
+        }
+        alumInfo.innerHTML = "<h3>Notas de Alumnos</h3>";
+        alumnos.forEach((alumno) => {
+          alumInfo.innerHTML += `ID: ${alumno.id}<br>Alumno: ${alumno.nombre}<br>Nota: ${alumno.nota}<br>Calificación: ${alumno.calificacion}<br><br>`;
+        });
+        if (storedEmail && storedNombre) {
+          alumInfo.innerHTML = "<br />";
+        }
+        estado1.innerHTML = textExito;
       }
     }
   }
