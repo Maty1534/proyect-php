@@ -4,18 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>formulario</title>
-    <link
-      rel="icon"
-      href="../../Img/photo-min-min.png"
-      type="image/png"
-      class="img_logo" />
     <link rel="stylesheet" href="../style/style.css" />
   </head>
   <body class="form-body">
     <div class="form_card">
       <div class="card">
-        <h2 class="tituloL">Publicar objeto de venta</h2>
-        <form>
+        <h2 class="tituloL">Editar objeto de venta</h2>
+        <form id="edicionform">
           <div class="campo">
             <label for="name" class="input-title">Nom:</label>
             <input
@@ -68,7 +63,13 @@
               class="input-campo"
               required />
           </div>
-          <button type="submit" class="btn" id="btn-summit">Guardar</button>
+          <button
+            type="button"
+            class="btn"
+            onclick="submitVentaForm()"
+            id="btn-summit">
+            Guardar
+          </button>
           <button
             type="button"
             class="btn"
