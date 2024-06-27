@@ -136,23 +136,23 @@ document.addEventListener("DOMContentLoaded", function () {
     let estado1 = document.getElementById("estado1");
     let userInfo = document.getElementById("userInfo");
     let alumInfo = document.getElementById("alumInfo");
-    let textExito = "Cargado Exitoso <br /> <br />";
+    let textExito = "<p>Cargado Exitoso </p><br>";
 
     if (storedEmail && storedPassword) {
       if (userInfo) {
-        userInfo.innerHTML = `Email: ${storedEmail}<br>Contraseña: ${storedPassword}`;
+        userInfo.innerHTML = `<p>Email: ${storedEmail}<br>Contraseña: ${storedPassword}</p> <br>`;
         estado1.innerHTML = textExito;
       }
     }
 
     if (alumnos && alumnos.length > 0) {
       if (alumInfo) {
-        if (!storedEmail) {
-          userInfo.innerHTML = `<br /> <br />`;
-        }
+        // if (!storedEmail) {
+        //   userInfo.innerHTML = `<br /> <br />`;
+        // }
         alumInfo.innerHTML = "<h3>Notas de Alumnos</h3>";
         alumnos.forEach((alumno) => {
-          alumInfo.innerHTML += `ID: ${alumno.id}<br>Alumno: ${alumno.nombre}<br>Nota: ${alumno.nota}<br>Calificación: ${alumno.calificacion}<br><br>`;
+          alumInfo.innerHTML += `<p>ID: ${alumno.id}<br>Alumno: ${alumno.nombre}<br>Nota: ${alumno.nota}<br>Calificación: ${alumno.calificacion}</p> <br>`;
         });
         if (storedEmail && storedNombre) {
           alumInfo.innerHTML = "<br />";
@@ -192,7 +192,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Inicia la carga del primer archivo PHP. Modificar para ver un solo archivo.
-    cargarArchivo(5);
+    cargarArchivo(0);
   }
 
   // Manejar el clic en el botón para limpiar localStorage

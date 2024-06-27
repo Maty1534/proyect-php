@@ -13,10 +13,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $nombre = isset($_POST['nombre']) ? htmlspecialchars(trim($_POST['nombre'])) : '';
   $nota = isset($_POST['nota']) ? intval($_POST['nota']) : -1;
 
-  if ($nombre === '' || $nota < 0 || $nota > 10) {
+  if (empty($nombre)) {
     $response = array(
       'status' => 'error',
-      'message' => 'Datos inválidos',
+      'message' => 'El alumno no fue ingresado',
+    );
+  } elseif (empty($nota)) {
+    $response = array(
+      'status' => 'error',
+      'message' => 'La nota no fue ingresada',
+    );
+  } elseif (!is_numeric($nota)) {
+    $response = array(
+      'status' => 'error',
+      'message' => 'la nota no es un número',
+    );
+  } elseif ($nota < 0 || $nota > 10) {
+    $response = array(
+      'status' => 'error',
+      'message' => 'la nota no es un número entre el 0 y el 10',
     );
   } else {
     // Determinar la calificación según la nota
@@ -57,3 +72,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 header('Content-Type: application/json');
 echo json_encode($response);
+
+/* 3. Al ejercicio anterior, agregarle validaciones con php, para indicar que los datos
+fueron ingresados incorrectamente:
+- Cuando el alumno no fue ingresado.
+- Cuando la nota no fue ingresada.
+- Cuando la nota no es un número.
+- Cuando la nota no es un número entre el 0 y el 10.
+Mostrar un mensaje diferente para cada situación. Tip: Investigar la función isset y
+is_numeric */
