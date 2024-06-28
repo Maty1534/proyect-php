@@ -14,6 +14,15 @@ foreach ($contenido_carpeta as $archivo) {
   }
 }
 
+header('Content-Type: application/json');
+
+// Para archivos JavaScript
+header('Content-Type: application/javascript; charset=utf-8');
+
+// Para archivos CSS
+header('Content-Type: text/css; charset=utf-8');
+
+
 // print_r($rutas_archivos_php);
 // Imprime el contenido como un array en formato JSON
 echo json_encode($rutas_archivos_php);

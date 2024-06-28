@@ -71,6 +71,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 header('Content-Type: application/json');
+
+// Para archivos JavaScript
+header('Content-Type: application/javascript; charset=utf-8');
+
+// Para archivos CSS
+header('Content-Type: text/css; charset=utf-8');
+
 echo json_encode($response);
 
 /* 3. Al ejercicio anterior, agregarle validaciones con php, para indicar que los datos

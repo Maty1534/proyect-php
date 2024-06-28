@@ -19,6 +19,9 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
     case 4:
       readfile('../Components/form_notas.html');
       break;
+    case 5:
+      readfile('../Components/form_perimetro.html');
+      break;
     default:
       echo 'Código no válido';
       break;
