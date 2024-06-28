@@ -4,19 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ControlDigital login</title>
-    <link
-      rel="icon"
-      href="../../Img/photo-min-min.png"
-      type="image/png"
-      class="img_logo" />
     <link rel="stylesheet" href="../style/style.css" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
   <body>
-    <div class="login_card">
+    <div class="centro">
       <div class="card">
-        <h2 class="tituloL">Iniciar Sesión</h2>
-        <form method="post" action="../php/Act6.php" id="loginform">
+        <h2 class="tituloForm">Iniciar Sesión</h2>
+        <form id="loginform" method="post">
           <div class="campo">
             <svg
               class="input-Icon"
@@ -30,7 +24,8 @@
               placeholder="Email"
               class="input-campo"
               type="email"
-              name="email" />
+              name="email"
+              autocomplete="on" />
           </div>
           <div class="campo">
             <svg
@@ -47,13 +42,12 @@
               type="password"
               name="password" />
           </div>
-          <button class="btn" type="submit">Login</button>
+          <button type="submit" class="btn">Login</button>
           <a href="#" class="btn-link">Forgot your password?</a>
         </form>
-        <br />
-        <br />
+        <div id="estado1"></div>
+        <div id="userInfo"></div>
       </div>
     </div>
-    <script src="../EcoScript/script.js"></script>
   </body>
 </html>

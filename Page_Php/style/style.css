@@ -56,7 +56,7 @@ body.php_body {
   color: var(--color-important);
 }
 
-/* Tarjeta Login */
+/* Tarjetas */
 html.display {
   height: 100%;
   margin: 0;
@@ -65,7 +65,7 @@ html.display {
   align-items: center;
 }
 
-.login_card {
+.centro {
   display: flex;
   justify-content: center; /* Centra horizontalmente */
   align-items: center;     /* Centra verticalmente */
@@ -73,16 +73,15 @@ html.display {
   margin: 0;               /* Elimina márgenes por defecto */
 }
 
-.login_card .card {
+.centro .card {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 260px;
   text-align: center;
   background-color: var(--color-card-bg);
   padding: 20px;
-  border-radius: 8px; /* Redondea los bordes de la tarjeta */
+  border-radius: 8px;
 }
 
 .campo {
@@ -91,11 +90,22 @@ html.display {
   background-color: var(--color-input-bg);
   border-radius: 8px;
   padding: 12px;
-  margin: 8px 0; /* Añade un poco de margen vertical */
-  width: 100%; /* Ajusta el ancho del campo */
+  margin: 8px 0; 
+  width: 100%; 
+  flex-wrap: nowrap;
+}
+
+.input-title {
+  flex: 1;
+  text-align: right;
+  color: var(--color-input-icon);
+  min-width: 15%;
+  margin-right: 20px;
+  white-space: nowrap; /* Evita el salto de línea dentro del input */
 }
 
 .input-Icon {
+
   height: 16px;
   width: 16px;
   fill: var(--color-input-icon);
@@ -103,15 +113,23 @@ html.display {
 }
 
 .input-campo {
+  flex: 2;
   background: none;
   border: none;
   outline: none;
   width: 100%;
   color: var(--color-input-text);
+  white-space: nowrap; /* Evita el salto de línea dentro del input */
+  overflow: hidden; /* Oculta el desbordamiento si el texto es demasiado largo */
+  text-overflow: ellipsis; /* Añade puntos suspensivos si el texto es demasiado largo */
 }
 
+#image {
+  display: flex;
+  flex-wrap: wrap;
+}
 /* Texto del Log in */
-.tituloL {
+.tituloForm {
   margin-bottom: 16px;
   font-size: 24px;
   font-weight: 700;
@@ -164,29 +182,3 @@ color: var(--color-btn-text);
   transition: opacity 0.3s ease-in-out;
 }
 
-/* Formulario */
-.form_card {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-}
-
-.form_card .card {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  background-color: var(--color-card-bg);
-  padding: 20px;
-  border-radius: 8px;
-}
-
-.input-title {
-  text-align: right;
-  height: auto;
-  width: 70px;
-  color: var(--color-input-icon);
-  margin-right: 20px;
-}

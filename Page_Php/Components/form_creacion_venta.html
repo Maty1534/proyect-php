@@ -4,20 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>formulario</title>
-    <link
-      rel="icon"
-      href="../../Img/photo-min-min.png"
-      type="image/png"
-      class="img_logo" />
     <link rel="stylesheet" href="../style/style.css" />
   </head>
-  <body class="form-body">
-    <div class="form_card">
+  <body>
+    <div class="centro">
       <div class="card">
-        <h2 class="tituloL">Publicar objeto de venta</h2>
-        <form>
+        <h2 class="tituloForm">Publicar objeto de venta</h2>
+        <form id="ventaform" method="post">
           <div class="campo">
-            <label for="name" class="input-title">Nom:</label>
+            <label for="name" class="input-title">Nombre:</label>
             <input
               type="text"
               id="name"
@@ -27,31 +22,29 @@
               required />
           </div>
           <div class="campo">
-            <label for="description" class="input-title">Desc:</label>
+            <label for="description" class="input-title">Descripción:</label>
             <textarea
               id="description"
               name="description"
               class="input-campo"
-              placeholder="Descripción del producto"
+              placeholder="Descripción"
               required></textarea>
           </div>
           <div class="campo">
-            <label for="price" class="input-title">Prec:</label>
+            <label for="price" class="input-title">Precio:</label>
             <input
               type="number"
               id="price"
               name="price"
               step="0.01"
               class="input-campo"
-              placeholder="Precio del producto"
+              placeholder="Valor numérico"
               required />
           </div>
           <div class="campo">
-            <label for="category" class="input-title">Catg:</label>
+            <label for="category" class="input-title">Categoría:</label>
             <select id="category" name="category" class="input-campo" required>
-              <option value="">
-                Selecciona una categoría para el producto
-              </option>
+              <option value="">Selecciona una categoría</option>
               <option value="electronics">Electrónica</option>
               <option value="clothing">Ropa</option>
               <option value="home">Hogar</option>
@@ -59,7 +52,7 @@
             </select>
           </div>
           <div class="campo">
-            <label for="image" class="input-title">Img:</label>
+            <label for="image" class="input-title">Imagen:</label>
             <input
               type="file"
               id="image"
@@ -68,7 +61,13 @@
               class="input-campo"
               required />
           </div>
-          <button type="submit" class="btn" id="btn-summit">Guardar</button>
+          <button
+            type="button"
+            class="btn"
+            onclick="submitVentaForm()"
+            id="btn-summit">
+            Guardar
+          </button>
           <button
             type="button"
             class="btn"

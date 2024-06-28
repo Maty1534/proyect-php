@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es" class="display">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notas</title>
+  </head>
+  <body>
+    <div class="centro">
+      <div class="card">
+        <h2 class="tituloForm">Datos de Alumnos</h2>
+        <form id="formularioAlumno" method="post">
+          <div class="campo">
+            <label for="nombre" class="input-title">Nombre:</label>
+            <input
+              type="text"
+              id="nombre"
+              name="nombre"
+              class="input-campo"
+              placeholder="Nombre del alumno"
+              required />
+          </div>
+          <div class="campo">
+            <label for="nota" class="input-title">Nota:</label>
+            <input
+              type="number"
+              id="nota"
+              name="nota"
+              class="input-campo"
+              placeholder="Nota del alumno"
+              required />
+          </div>
+          <button class="btn" type="submit">Enviar</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
