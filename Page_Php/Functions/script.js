@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const estado = document.getElementById("estado");
     estado.innerText = "Cargando..."; // Mostrar estado de carga
 
-    fetch("../php/index.php", {
+    fetch("../Server/index.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
@@ -43,6 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let loginForm = document.getElementById("loginform");
     let estado1 = document.getElementById("estado1");
     let formularioAlumno = document.getElementById("formularioAlumno");
+    let ladoPerimetro = document.getElementById("perimetroForm");
 
     if (loginForm) {
       loginForm.addEventListener("submit", function (event) {
@@ -53,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let email = document.getElementById("logemail").value;
         let password = document.getElementById("logpass").value;
 
-        fetch("Functions/login.php", {
+        fetch("../Server/login.php", {
           method: "POST",
           body: formDataLogin,
         })
@@ -88,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let nota = document.getElementById("nota").value;
         let nombre = document.getElementById("nombre").value;
 
-        fetch("../Functions/notas.php", {
+        fetch("../Server/notas.php", {
           method: "POST",
           body: formDataAlum,
         })
@@ -124,41 +125,79 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log("Nota:", nota);
       });
     }
+    if (ladoPerimetro) {
+      ladoPerimetro.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        let ladoForm = new FormData(ladoPerimetro);
+        let lado = document.getElementById("lado").value;
+
+        fetch("../Server/Act7.php", {
+          method: "POST",
+          body: ladoForm,
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            if (data.status === "success") {
+             let listaLado = [{
+              lado: lado,
+              perimetro: data.perimetro,
+              superficie: data.superficie,
+             }]
+              localStorage.setItem("calculoLado", JSON.stringify(listaLado));
+              window.location.reload();
+            } else {
+              estado1.innerHTML = "Error: " + data.message;
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+        console.log("Lado:", lado);
+      });
+    }
   }
 
   function displayUserInfo() {
-    // Mostrar datos de los dos formularios (notas y login)
+    // Estado de la carga de información.
+    let estado1 = document.getElementById("estado1");
+    let textExito = "<p>Cargado Exitoso </p><br>";
+
+    // Datos de los usuarios logeados.
     let storedEmail = localStorage.getItem("email");
     let storedPassword = localStorage.getItem("password");
 
+    // Dato del formulario de alumnos para obtener calificaciones.
     let alumnos = JSON.parse(localStorage.getItem("alumnos")) || [];
 
-    let estado1 = document.getElementById("estado1");
+    // Dato del formulario para calcular perímetro de un cuadrado.
+    let calculoLado = JSON.parse(localStorage.getItem("calculoLado")) || [];
+
+    // Id de divs dentro del index.html para mostrar los datos en pantalla.
     let userInfo = document.getElementById("userInfo");
     let alumInfo = document.getElementById("alumInfo");
-    let textExito = "<p>Cargado Exitoso </p><br>";
+    let ladoInfo = document.getElementById("ladoInfo");
 
-    if (storedEmail && storedPassword) {
-      if (userInfo) {
-        userInfo.innerHTML = `<p>Email: ${storedEmail}<br>Contraseña: ${storedPassword}</p> <br>`;
-        estado1.innerHTML = textExito;
-      }
+    if (storedEmail && storedPassword && userInfo) {
+      userInfo.innerHTML = `<p>Email: ${storedEmail}<br>Contraseña: ${storedPassword}</p> <br>`;
+      estado1.innerHTML = textExito;
     }
 
-    if (alumnos && alumnos.length > 0) {
-      if (alumInfo) {
-        // if (!storedEmail) {
-        //   userInfo.innerHTML = `<br /> <br />`;
-        // }
-        alumInfo.innerHTML = "<h3>Notas de Alumnos</h3>";
-        alumnos.forEach((alumno) => {
-          alumInfo.innerHTML += `<p>ID: ${alumno.id}<br>Alumno: ${alumno.nombre}<br>Nota: ${alumno.nota}<br>Calificación: ${alumno.calificacion}</p> <br>`;
-        });
-        if (storedEmail && storedNombre) {
-          alumInfo.innerHTML = "<br />";
-        }
-        estado1.innerHTML = textExito;
+    if (alumnos && alumnos.length > 0 && alumInfo) {
+      alumInfo.innerHTML = "<h3>Notas de Alumnos</h3>";
+      alumnos.forEach((alumno) => {
+        alumInfo.innerHTML += `<p>ID: ${alumno.id}<br>Alumno: ${alumno.nombre}<br>Nota: ${alumno.nota}<br>Calificación: ${alumno.calificacion}</p> <br>`;
+      });
+      if (storedEmail) {
+        alumInfo.innerHTML = "<br />";
       }
+      estado1.innerHTML = textExito;
+    }
+
+    if (calculoLado.length > 0) {
+      ladoInfo.innerHTML = `<h3>Calculo del perímetro del cuadrado</h3>
+      <p>Lado del cuadrado: ${calculoLado[0].lado}<br>Perimetro: ${calculoLado[0].perimetro}<br>Superficie: ${calculoLado[0].superficie}</p> <br>`;
     }
   }
 
