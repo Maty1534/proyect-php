@@ -44,6 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let estado1 = document.getElementById("estado1");
     let formularioAlumno = document.getElementById("formularioAlumno");
     let ladoPerimetro = document.getElementById("perimetroForm");
+    let formularioPalabra = document.getElementById("formularioPalabra");
 
     if (loginForm) {
       loginForm.addEventListener("submit", function (event) {
@@ -140,11 +141,13 @@ document.addEventListener("DOMContentLoaded", function () {
           .then((data) => {
             console.log(data);
             if (data.status === "success") {
-             let listaLado = [{
-              lado: lado,
-              perimetro: data.perimetro,
-              superficie: data.superficie,
-             }]
+              let listaLado = [
+                {
+                  lado: lado,
+                  perimetro: data.perimetro,
+                  superficie: data.superficie,
+                },
+              ];
               localStorage.setItem("calculoLado", JSON.stringify(listaLado));
               window.location.reload();
             } else {
@@ -155,6 +158,41 @@ document.addEventListener("DOMContentLoaded", function () {
             console.error("Error:", error);
           });
         console.log("Lado:", lado);
+      });
+    }
+
+    if (formularioPalabra) {
+      formularioPalabra.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        let formPalabra = new FormData(formularioPalabra);
+        let palabra = document.getElementById("palabra").value;
+
+        fetch("../Server/Act7.php", {
+          method: "POST",
+          body: formPalabra,
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            if (data.status === "success") {
+              let listPalabra = [
+                {
+                  palabra: palabra,
+                  mayuscula: data.mayuscula,
+                  minuscula: data.minuscula,
+                },
+              ];
+              localStorage.setItem("listPalabra", JSON.stringify(listPalabra));
+              window.location.reload();
+            } else {
+              estado1.innerHTML = "Error: " + data.message;
+            }
+          })
+          .catch((error) => {
+            console.error("Error", error);
+          });
+        console.log("Palabra:", palabra);
       });
     }
   }
@@ -174,10 +212,14 @@ document.addEventListener("DOMContentLoaded", function () {
     // Dato del formulario para calcular perímetro de un cuadrado.
     let calculoLado = JSON.parse(localStorage.getItem("calculoLado")) || [];
 
+    // Palabra del formulario palabra
+    let listPalabra = JSON.parse(localStorage.getItem("listPalabra")) || [];
+
     // Id de divs dentro del index.html para mostrar los datos en pantalla.
     let userInfo = document.getElementById("userInfo");
     let alumInfo = document.getElementById("alumInfo");
     let ladoInfo = document.getElementById("ladoInfo");
+    let palabraInfo = document.getElementById("palabraInfo");
 
     if (storedEmail && storedPassword && userInfo) {
       userInfo.innerHTML = `<p>Email: ${storedEmail}<br>Contraseña: ${storedPassword}</p> <br>`;
@@ -196,8 +238,13 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (calculoLado.length > 0) {
-      ladoInfo.innerHTML = `<h3>Calculo del perímetro del cuadrado</h3>
-      <p>Lado del cuadrado: ${calculoLado[0].lado}<br>Perimetro: ${calculoLado[0].perimetro}<br>Superficie: ${calculoLado[0].superficie}</p> <br>`;
+      ladoInfo.innerHTML = `<h3>Calculo del perímetro del cuadrado en CM</h3>
+      <p>Lado del cuadrado: ${calculoLado[0].lado} cm<br>Perimetro: ${calculoLado[0].perimetro} cm<br>Superficie: ${calculoLado[0].superficie} cm²</p> <br>`;
+    }
+
+    if (listPalabra.length > 0) {
+      palabraInfo.innerHTML = `<h3>La palabra almacenada aplicando sus funciones</h3>
+        <p>Palabra: ${listPalabra[0].palabra}<br>Mayúscula: ${listPalabra[0].mayuscula}<br>Minúscula: ${listPalabra[0].minuscula}</p>`;
     }
   }
 
