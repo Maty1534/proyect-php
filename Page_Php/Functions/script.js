@@ -45,6 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let formularioAlumno = document.getElementById("formularioAlumno");
     let ladoPerimetro = document.getElementById("perimetroForm");
     let formularioPalabra = document.getElementById("formularioPalabra");
+    let formularioMes = document.getElementById("formularioMes");
 
     if (loginForm) {
       loginForm.addEventListener("submit", function (event) {
@@ -172,7 +173,12 @@ document.addEventListener("DOMContentLoaded", function () {
           method: "POST",
           body: formPalabra,
         })
-          .then((response) => response.json())
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("La respuesta del servidor no esta bien.");
+            }
+            return response.json();
+          })
           .then((data) => {
             console.log(data);
             if (data.status === "success") {
@@ -181,6 +187,9 @@ document.addEventListener("DOMContentLoaded", function () {
                   palabra: palabra,
                   mayuscula: data.mayuscula,
                   minuscula: data.minuscula,
+                  resultadoPalabra: data.resultadoPalabra,
+                  palabraOriginal: data.palabraOriginal,
+                  palabraReversa: data.palabraReversa,
                 },
               ];
               localStorage.setItem("listPalabra", JSON.stringify(listPalabra));
@@ -190,9 +199,43 @@ document.addEventListener("DOMContentLoaded", function () {
             }
           })
           .catch((error) => {
-            console.error("Error", error);
+            console.error("Error:", error);
           });
         console.log("Palabra:", palabra);
+      });
+    }
+
+    if (formularioMes) {
+      formularioMes.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        let mesForm = new FormData(formularioMes);
+        let mesNumber = document.getElementById("mesNumber").value;
+
+        fetch("../Server/Act7.php", {
+          method: "POST",
+          body: mesForm,
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.status === "success") {
+              let listaMes = [
+                {
+                  mesNumber: mesNumber,
+                  mes: data.mes,
+                  mesMensaje: data.mesMensaje,
+                },
+              ];
+              localStorage.setItem("listaMes", JSON.stringify(listaMes));
+              window.location.reload();
+            } else {
+              estado1.innerHTML = "Error: " + data.message;
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+        console.log("Mes:", mesNumber);
       });
     }
   }
@@ -213,13 +256,17 @@ document.addEventListener("DOMContentLoaded", function () {
     let calculoLado = JSON.parse(localStorage.getItem("calculoLado")) || [];
 
     // Palabra del formulario palabra
-    let listPalabra = JSON.parse(localStorage.getItem("listPalabra")) || [];
+    let listPalabra = JSON.parse(localStorage.getItem("listPalabra"));
+
+    // Variables para el formulario del mes
+    let listaMes = JSON.parse(localStorage.getItem("listaMes")) || [];
 
     // Id de divs dentro del index.html para mostrar los datos en pantalla.
     let userInfo = document.getElementById("userInfo");
     let alumInfo = document.getElementById("alumInfo");
     let ladoInfo = document.getElementById("ladoInfo");
     let palabraInfo = document.getElementById("palabraInfo");
+    let mesInfo = document.getElementById("mesInfo");
 
     if (storedEmail && storedPassword && userInfo) {
       userInfo.innerHTML = `<p>Email: ${storedEmail}<br>Contraseña: ${storedPassword}</p> <br>`;
@@ -242,9 +289,19 @@ document.addEventListener("DOMContentLoaded", function () {
       <p>Lado del cuadrado: ${calculoLado[0].lado} cm<br>Perimetro: ${calculoLado[0].perimetro} cm<br>Superficie: ${calculoLado[0].superficie} cm²</p> <br>`;
     }
 
-    if (listPalabra.length > 0) {
+    if (listPalabra) {
       palabraInfo.innerHTML = `<h3>La palabra almacenada aplicando sus funciones</h3>
-        <p>Palabra: ${listPalabra[0].palabra}<br>Mayúscula: ${listPalabra[0].mayuscula}<br>Minúscula: ${listPalabra[0].minuscula}</p>`;
+        <p>Palabra: ${listPalabra[0].palabra}<br>
+        Mayúscula: ${listPalabra[0].mayuscula}<br>
+        Minúscula: ${listPalabra[0].minuscula}<br>
+        Resultado: ${listPalabra[0].resultadoPalabra}<br>
+        Palabra Original: ${listPalabra[0].palabraOriginal}<br>
+        Palabra Reversa: ${listPalabra[0].palabraReversa} <br><br></p>`;
+    }
+
+    if (listaMes.length > 0) {
+      mesInfo.innerHTML = `<h3>El numero del mes escrito es: ${listaMes[0].mesNumber}</h3>
+        <p>Mes: ${listaMes[0].mes}<br>Mensaje: ${listaMes[0].mesMensaje}</p> <br>`;
     }
   }
 

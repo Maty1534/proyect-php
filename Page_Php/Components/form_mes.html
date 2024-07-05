@@ -3,21 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Palabra</title>
+    <title>Mes</title>
   </head>
   <body>
     <div class="centro">
       <div class="card">
-        <h2 class="tituloForm">Datos para la palabra</h2>
-        <form id="formularioPalabra" method="post">
+        <h2 class="tituloForm">Mes en numero</h2>
+        <form id="formularioMes" method="post">
           <div class="campo">
-            <label for="palabra" class="input-title">Palabra:</label>
+            <label for="palabra" class="input-title">Mes:</label>
             <input
-              type="text"
-              id="palabra"
-              name="palabra"
+              type="number"
+              id="mesNumber"
+              name="mesNumber"
               class="input-campo"
-              placeholder="Coloque una palabra"
+              placeholder="Coloque el numero del mes"
               required />
           </div>
           <button class="btn" type="submit">Enviar</button>

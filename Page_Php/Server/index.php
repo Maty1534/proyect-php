@@ -25,6 +25,9 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
     case 6:
       readfile('../Components/form_palabra.html');
       break;
+    case 7:
+      readfile('../Components/form_mes.html');
+      break;
     default:
       echo 'Código no válido';
       break;
