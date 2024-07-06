@@ -1,8 +1,5 @@
 <?php
 $response = array();
-// $response1 = array();
-// $response2 = array();
-// $response3 = array();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $lado = $_POST['lado'] ?? null;
