@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Open+Sans&family=Roboto:wght@300&display=swap");
+
 
 /* Reset y configuración básica */
 * {
@@ -11,6 +13,12 @@
 }
 
 :root {
+  --color_primary: #5e9188;
+  --color_secondary: #ffffff;
+  --color_tertiary: #00e676;
+  --color_background: #253342;
+  --color_important: #ffd700;
+  /* otros colores */
   --color-primary: #e2f2f2;
   --color-navbar: #4ca6a6;
   --color-text-primary: #2c3e50;
@@ -32,6 +40,11 @@
   --color-link-hover: #ffeba7;
   --color-shadow: rgba(255, 235, 167, 0.2);
   --color-shadow-hover: rgba(16, 39, 112, 0.2);
+  --shadow-color: 210deg 36% 47%;
+  --shadow-elevation-medium: 0.3px 0.5px 0.9px hsl(var(--shadow-color) / 0),
+    1.5px 2.9px 4.9px hsl(var(--shadow-color) / 0.27),
+    3px 6.1px 10.2px hsl(var(--shadow-color) / 0.55),
+    6.3px 12.5px 21px hsl(var(--shadow-color) / 0.82);
 }
 
 /* Estilo para diferentes cuerpos de PHP */
@@ -182,19 +195,32 @@ color: var(--color-btn-text);
   transition: opacity 0.3s ease-in-out;
 }
 
+/* Contenedor de las tarjetas */
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
 /* Cards: tarjeta digital para presentar */
+.main_cards {
+  font-family: "Roboto", sans-serif;
+  color: var(--color_secondary);
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  font-size: 17px;
+}
+
 .card {
   display: flex;
-  flex: 0 0 80%;
-  flex-wrap: wrap;
-  min-width: 325px;
-  max-width: 350px;
-  margin: 5% 2.5%;
+  width: 380px;
+  flex-direction: column; /* Ajuste para que los hijos se organicen en columna */
+  flex: 0 1 350px; /* Ajuste de flexibilidad para evitar conflicto con min-width y max-width */
+  margin: 2.5%;
   border: 1px solid #ccc;
   border-radius: 8px;
   box-shadow: var(--shadow-elevation-medium);
-  width: 20%;
-  height: 400px;
   transition: transform 0.3s ease-in-out;
 }
 
@@ -202,25 +228,43 @@ color: var(--color-btn-text);
   border-top-right-radius: 8px;
   border-top-left-radius: 8px;
   width: 100%;
-  height: 50%;
-  overflow: auto;
+  height: 200px; /* Ajuste de altura fija */
+  object-fit: cover; /* Para asegurar que la imagen se ajuste correctamente */
 }
 
 .card__content {
-  height: 50%;
   padding: 16px;
+  display: flex;
+  flex-direction: column; /* Para organizar el contenido en columna */
+  flex: 1; /* Para ocupar el espacio restante */
 }
 
 .card__title {
   text-align: left;
   color: var(--color_primary);
+  height: 80px;
   font-size: 1.2rem;
   margin-bottom: 8px;
+  overflow: hidden; /* Ocultar el desbordamiento */
+  text-overflow: ellipsis; /* Mostrar elipsis en caso de desbordamiento */
+  display: -webkit-box; /* Necesario para el clamping de líneas */
+  -webkit-box-orient: vertical; /* Necesario para el clamping de líneas */
+  -webkit-line-clamp: 3; /* Número de líneas antes de truncar */
+  line-clamp: 3; /* Propiedad estándar para el clamping de líneas */
 }
 
 .card__description {
+  margin: 5px 0;
   font-size: 1rem;
   color: #555;
+  flex: 1; /* Para ocupar el espacio restante */
+  overflow: hidden; /* Ocultar el desbordamiento */
+  text-overflow: ellipsis; /* Mostrar elipsis en caso de desbordamiento */
+  display: -webkit-box; /* Necesario para el clamping de líneas */
+  -webkit-box-orient: vertical; /* Necesario para el clamping de líneas */
+  -webkit-line-clamp: 3; /* Número de líneas antes de truncar */
+  line-clamp: 3; /* Propiedad estándar para el clamping de líneas */
+  height: 120px;
 }
 
 .card__button {
@@ -230,6 +274,8 @@ color: var(--color-btn-text);
   color: #fff;
   text-decoration: none;
   border-radius: 4px;
+  align-self: flex-end; /* Para alinear el botón a la izquierda */
+  margin-top: 16px; /* Margen superior para separar del contenido */
 }
 
 .card:hover {
